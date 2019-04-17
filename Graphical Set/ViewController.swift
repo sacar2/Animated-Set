@@ -96,7 +96,7 @@ class ViewController: UIViewController {
         }
         
         //if there's no space on the table or no cards in the deck
-        dealMoreCardsButton.isEnabled = ( game.cardsOnTable.count < 24 || !game.matchedCardIndices.isEmpty ) && game.cardsInDeck.count > 0
+        dealMoreCardsButton.isEnabled = game.cardsInDeck.count > 0
         
         setScoreLabel(withScore: game.score)
         if !game.matchedCardIndices.isEmpty{
