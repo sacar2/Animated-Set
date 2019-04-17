@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  2019-03-14-Assignment2-Set
+//  Graphical Set
 //
 //  Created by Selin Denise Acar on 2019-03-14.
 //  Copyright © 2019 Selin Denise Acar. All rights reserved.
