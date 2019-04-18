@@ -88,7 +88,7 @@ class ViewController: UIViewController {
                 if card.isMatched{
                     cardButton.layer.borderColor = UIColor.green.cgColor
                     cardButton.isEnabled = false  //makesure that the matched cards cannot be deselected
-                }else if card.isMismatched{
+                }else if game.mismatchedCardIndices.contains(index){
                     cardButton.layer.borderColor = UIColor.red.cgColor
                 }
             }else{ cardButton.layer.borderWidth = 0 }

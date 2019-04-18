@@ -68,8 +68,7 @@ class SetGame{
         removeMatchedCards()
         
         if !mismatchedCardIndices.isEmpty{
-            flipIsMismatchForMismatches()
-            mismatchedCardIndices.removeAll()
+            mismatchedCardIndices.removeAll() //if there are mismatches, remove them
         }
         
         //if card is already selected, unselect the card
@@ -155,15 +154,8 @@ class SetGame{
     }
     
     private func handleMismatch(forIndices indices: [Int]){
-        mismatchedCardIndices = indices
-        reduceScoreDueToMismatch()
-        flipIsMismatchForMismatches()
-    }
-    
-    private func flipIsMismatchForMismatches(){
-        for index in mismatchedCardIndices{
-            cardsOnTable[index].isMismatched = !cardsOnTable[index].isMismatched
-        }
+        mismatchedCardIndices = indices //add indexes to mismatches
+        reduceScoreDueToMismatch() //reduce score for this
     }
     
     private func reduceScoreDueToMismatch(){
