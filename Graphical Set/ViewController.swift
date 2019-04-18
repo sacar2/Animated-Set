@@ -82,7 +82,7 @@ class ViewController: UIViewController {
                 cardButton.setAttributedTitle(attributedCardString, for: UIControl.State.normal)
             }
             
-            if card.isSelected{
+            if game.selectedCardIndices.contains(index){
                 cardButton.layer.borderWidth = 3.0
                 cardButton.layer.borderColor = UIColor.blue.cgColor
                 if card.isMatched{
@@ -92,7 +92,6 @@ class ViewController: UIViewController {
                     cardButton.layer.borderColor = UIColor.red.cgColor
                 }
             }else{ cardButton.layer.borderWidth = 0 }
-            
         }
         
         //if there's no space on the table or no cards in the deck

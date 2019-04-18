@@ -14,6 +14,7 @@ class SetGame{
     private(set) var cardsInDeck = [SetCard]()
     private(set) var cardsOnTable = [SetCard]()
     private(set) var matchedCards = [SetCard]()
+    private(set) var selectedCardIndices = [Int]()
     private(set) var matchedCardIndices = [Int]()
     private(set) var mismatchedCardIndices = [Int]()
     private var setsOf3Cards = 0
@@ -28,7 +29,7 @@ class SetGame{
             for shade in SetCard.Shading.allCases{
                 for number in 1...3{
                     for color in [UIColor.red, UIColor.blue, UIColor.yellow]{
-                        cardsInDeck.append(SetCard(isSelected: false, withSymbol: symbol, withNumberOfSymbols: number, hasShading: shade, withColor: color))
+                        cardsInDeck.append(SetCard(withSymbol: symbol, withNumberOfSymbols: number, hasShading: shade, withColor: color))
                     }
                 }
             }
@@ -71,30 +72,19 @@ class SetGame{
             mismatchedCardIndices.removeAll()
         }
         
-        let card = cardsOnTable[index]
-        
-        //if card is already an active card, unselect the card
-        if card.isSelected == true {
-            cardsOnTable[index].isSelected = false
+        //if card is already selected, unselect the card
+        if let indexOfSelectedCard = selectedCardIndices.index(of: index){
+            selectedCardIndices.remove(at: indexOfSelectedCard)
             reduceScoreDueToDeselection()
-        }else{ //if the card is not already selected
-            
-            //check if there are already 3 cards selected
-            let selectedCards = cardsOnTable.indices.filter{cardsOnTable[$0].isSelected}
-            //if there is then unelect them
-            if (selectedCards.count == 3) {
-                for selectedCardIndex in selectedCards{
-                    cardsOnTable[selectedCardIndex].isSelected = false
-                }
+        }else{//if the card is not already selected
+            //check if there are 3 cards already selected, and if so, unselect them
+            if selectedCardIndices.count == 3{
+                selectedCardIndices.removeAll()
             }
-            cardsOnTable[index].isSelected = true //select the selected card
-            
-            if (selectedCards.count == 2) {
-                //if there are now 3 selected cards, then check if they are a set
-                let newlySelectedCardIndices = cardsOnTable.indices.filter{cardsOnTable[$0].isSelected}
-                if newlySelectedCardIndices.count == 3{
-                    verifySet(forCardIndices: newlySelectedCardIndices)
-                }
+            selectedCardIndices.append(index)
+            //if adding the new card equals 3, check if its a set
+            if selectedCardIndices.count == 3{
+                verifySet(forCardIndices: selectedCardIndices)
             }
         }
     }
@@ -106,7 +96,9 @@ class SetGame{
                 cardsOnTable[matchIndex] = cardsInDeck.removeLast()
             }else{ //if there are no more items in the deck, make that card invisible
                 cardsOnTable[matchIndex].color = UIColor.clear
-                cardsOnTable[matchIndex].isSelected = false
+            }
+            if let selectedCardIndex = selectedCardIndices.index(of: matchIndex){
+                selectedCardIndices.remove(at: selectedCardIndex)
             }
         }
         

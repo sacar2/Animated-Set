@@ -24,7 +24,6 @@ struct SetCard{
         case striped
     }
     
-    var isSelected = false
     var isMatched = false
     var isMismatched = false
     var symbol: Symbol
@@ -32,8 +31,7 @@ struct SetCard{
     var shading: Shading
     var color: UIColor
     
-    init(isSelected selectedValue: Bool = false, withSymbol symbolValue: Symbol, withNumberOfSymbols symbolCount: Int, hasShading shadingValue: Shading, withColor colorValue: UIColor) {
-        isSelected = selectedValue
+    init(withSymbol symbolValue: Symbol, withNumberOfSymbols symbolCount: Int, hasShading shadingValue: Shading, withColor colorValue: UIColor) {
         symbol = symbolValue
         number = symbolCount
         shading = shadingValue
