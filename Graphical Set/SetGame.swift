@@ -116,26 +116,17 @@ class SetGame{
         
         //only doing multiple if statements instead of one large one because it's easier to read
         //cards must all be the same colour or all different colours
-        if checkIfAllEqualForValues([cardsOnTable[indices[0]].color, cardsOnTable[indices[1]].color, cardsOnTable[indices[2]].color]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].color, cardsOnTable[indices[1]].color, cardsOnTable[indices[2]].color]){
-            //cards must all be the same number or all different numbers
-            if checkIfAllEqualForValues([cardsOnTable[indices[0]].number, cardsOnTable[indices[1]].number, cardsOnTable[indices[2]].number]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].number, cardsOnTable[indices[1]].number, cardsOnTable[indices[2]].number]){
-                //cards must all be the same shading or all different shades
-                if checkIfAllEqualForValues([cardsOnTable[indices[0]].shading, cardsOnTable[indices[1]].shading, cardsOnTable[indices[2]].shading]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].shading, cardsOnTable[indices[1]].shading, cardsOnTable[indices[2]].shading]){
-                    //cards must all be the same symbol or all different symbols
-                    if checkIfAllEqualForValues([cardsOnTable[indices[0]].symbol, cardsOnTable[indices[1]].symbol, cardsOnTable[indices[2]].symbol]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].symbol, cardsOnTable[indices[1]].symbol, cardsOnTable[indices[2]].symbol]){
+        //cards must all be the same number or all different numbers
+        //cards must all be the same shading or all different shades
+        //cards must all be the same symbol or all different symbols
+        if (checkIfAllEqualForValues([cardsOnTable[indices[0]].color, cardsOnTable[indices[1]].color, cardsOnTable[indices[2]].color]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].color, cardsOnTable[indices[1]].color, cardsOnTable[indices[2]].color])) &&
+            (checkIfAllEqualForValues([cardsOnTable[indices[0]].number, cardsOnTable[indices[1]].number, cardsOnTable[indices[2]].number]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].number, cardsOnTable[indices[1]].number, cardsOnTable[indices[2]].number])) &&
+            (checkIfAllEqualForValues([cardsOnTable[indices[0]].shading, cardsOnTable[indices[1]].shading, cardsOnTable[indices[2]].shading]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].shading, cardsOnTable[indices[1]].shading, cardsOnTable[indices[2]].shading])) &&
+            (checkIfAllEqualForValues([cardsOnTable[indices[0]].symbol, cardsOnTable[indices[1]].symbol, cardsOnTable[indices[2]].symbol]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].symbol, cardsOnTable[indices[1]].symbol, cardsOnTable[indices[2]].symbol])){
                         //If you make it here then yeah they're a set!
                         //add card indices to matched card indices so that during the next selection or tap to the "add 3 more cards" button, the 3 matched cards can be handled
-                        matchedCardIndices = indices
-                        increaseScoreDueToMatch()
-                    }else{
-                        handleMismatch(forIndices: indices)
-                    }
-                }else{
-                    handleMismatch(forIndices: indices)
-                }
-            }else{
-                handleMismatch(forIndices: indices)
-            }
+            matchedCardIndices = indices
+            increaseScoreDueToMatch()
         }else{
             handleMismatch(forIndices: indices)
         }
@@ -158,6 +149,3 @@ class SetGame{
         score += (11 - setsOf3Cards) //if there are more cards on the table, reduce additional score. max sets is 8
     }
 }
-
-
-
