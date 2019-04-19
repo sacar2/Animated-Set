@@ -123,8 +123,8 @@ class SetGame{
             (checkIfAllEqualForValues([cardsOnTable[indices[0]].number, cardsOnTable[indices[1]].number, cardsOnTable[indices[2]].number]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].number, cardsOnTable[indices[1]].number, cardsOnTable[indices[2]].number])) &&
             (checkIfAllEqualForValues([cardsOnTable[indices[0]].shading, cardsOnTable[indices[1]].shading, cardsOnTable[indices[2]].shading]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].shading, cardsOnTable[indices[1]].shading, cardsOnTable[indices[2]].shading])) &&
             (checkIfAllEqualForValues([cardsOnTable[indices[0]].symbol, cardsOnTable[indices[1]].symbol, cardsOnTable[indices[2]].symbol]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].symbol, cardsOnTable[indices[1]].symbol, cardsOnTable[indices[2]].symbol])){
-                        //If you make it here then yeah they're a set!
-                        //add card indices to matched card indices so that during the next selection or tap to the "add 3 more cards" button, the 3 matched cards can be handled
+            //If you make it here then yeah they're a set!
+            //add card indices to matched card indices so that during the next selection or tap to the "add 3 more cards" button, the 3 matched cards can be handled
             matchedCardIndices = indices
             increaseScoreDueToMatch()
         }else{
