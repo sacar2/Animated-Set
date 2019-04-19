@@ -77,7 +77,6 @@ class ViewController: UIViewController {
                     ]
                 }
                 let attributedCardString = NSAttributedString(string: cardString, attributes: attributes)
-
                 cardButton.setTitle(cardString, for: UIControl.State.normal)
                 cardButton.setAttributedTitle(attributedCardString, for: UIControl.State.normal)
             }
@@ -87,17 +86,16 @@ class ViewController: UIViewController {
                 cardButton.layer.borderColor = UIColor.blue.cgColor
                 if game.matchedCardIndices.contains(index){
                     cardButton.layer.borderColor = UIColor.green.cgColor
-                    cardButton.isEnabled = false  //makesure that the matched cards cannot be deselected
+                    cardButton.isEnabled = false
                 }else if game.mismatchedCardIndices.contains(index){
                     cardButton.layer.borderColor = UIColor.red.cgColor
                 }
             }else{ cardButton.layer.borderWidth = 0 }
         }
         
-        //if there's no space on the table or no cards in the deck
         dealMoreCardsButton.isEnabled = game.cardsInDeck.count > 0
-        
         setScoreLabel(withScore: game.score)
+        
         if !game.matchedCardIndices.isEmpty{
             gameFeedbackLabel.text = "You found a set 😁"
         }else if !game.mismatchedCardIndices.isEmpty{

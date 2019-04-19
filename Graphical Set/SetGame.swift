@@ -56,7 +56,6 @@ class SetGame{
     func isThereAnAvailableSetOnTheTable() -> Bool{
         //An algorithm to tell if there is an available set
         //TODO: what is an efficient way to go through the cards on the table and call verifySet(forCardIndices:)
-        
         return false
     }
 
@@ -80,6 +79,7 @@ class SetGame{
                 selectedCardIndices.removeAll()
             }
             selectedCardIndices.append(index)
+            
             //if adding the new card equals 3, check if its a set
             if selectedCardIndices.count == 3{
                 verifySet(forCardIndices: selectedCardIndices)
@@ -99,7 +99,6 @@ class SetGame{
                 selectedCardIndices.remove(at: selectedCardIndex)
             }
         }
-        
         //reset the matched card indices to an empty array
         matchedCardIndices.removeAll()
     }
