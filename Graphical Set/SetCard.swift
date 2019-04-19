@@ -24,7 +24,6 @@ struct SetCard{
         case striped
     }
     
-    var isMatched = false
     var symbol: Symbol
     var number: Int
     var shading: Shading
