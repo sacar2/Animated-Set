@@ -13,7 +13,6 @@ class SetGame{
     private(set) var score = 0
     private(set) var cardsInDeck = [SetCard]()
     private(set) var cardsOnTable = [SetCard]()
-    private(set) var matchedCards = [SetCard]()
     private(set) var selectedCardIndices = [Int]()
     private(set) var matchedCardIndices = [Int]()
     private(set) var mismatchedCardIndices = [Int]()
@@ -125,13 +124,7 @@ class SetGame{
                 if checkIfAllEqualForValues([cardsOnTable[indices[0]].shading, cardsOnTable[indices[1]].shading, cardsOnTable[indices[2]].shading]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].shading, cardsOnTable[indices[1]].shading, cardsOnTable[indices[2]].shading]){
                     //cards must all be the same symbol or all different symbols
                     if checkIfAllEqualForValues([cardsOnTable[indices[0]].symbol, cardsOnTable[indices[1]].symbol, cardsOnTable[indices[2]].symbol]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].symbol, cardsOnTable[indices[1]].symbol, cardsOnTable[indices[2]].symbol]){
-                        //If you make it here then yeah they're a set! wooooo.
-                        
-                        //now add it to your matched cards (next time something is highlighted, check if it's matched, if it is then remove it from the cards on the table and replace these matched cards with 3 from the deck)
-                        for matchIndex in indices{
-                            cardsOnTable[matchIndex].isMatched = true
-                            matchedCards.append(cardsOnTable[matchIndex])
-                        }
+                        //If you make it here then yeah they're a set!
                         //add card indices to matched card indices so that during the next selection or tap to the "add 3 more cards" button, the 3 matched cards can be handled
                         matchedCardIndices = indices
                         increaseScoreDueToMatch()
