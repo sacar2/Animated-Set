@@ -12,15 +12,20 @@ class ViewController: UIViewController {
     
     private var game = SetGame()
     
-    @IBOutlet var cardButtons: [UIButton]!
+    @IBOutlet weak var cardArea: UIView!
+    lazy var grid = Grid(layout: .dimensions(rowCount: 4, columnCount: 3), frame: cardArea.bounds)
+    
+    var cards: [CardView] = []
+    
+//    @IBOutlet var cardButtons: [UIButton]!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var gameFeedbackLabel: UILabel!
     
     @IBAction func newGame(_ sender: UIButton) {
         game = SetGame()
-        for index in cardButtons.indices{
-            restartButton(cardButtons[index])
-        }
+//        for index in cardButtons.indices{
+//            restartButton(cardButtons[index])
+//        }
         updateViewFromModel()
     }
     
@@ -31,33 +36,80 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tappedCardButton(_ sender: UIButton) {
-        if let buttonIndex = cardButtons.index(of: sender){
-            game.selectCard(forIndex: buttonIndex)
-            updateViewFromModel()
-        }
+//        if let buttonIndex = cardButtons.index(of: sender){
+//            game.selectCard(forIndex: buttonIndex)
+//            updateViewFromModel()
+//        }
     }
     
-    override func viewDidLoad() {
-        for card in cardButtons{
-            card.layer.backgroundColor = UIColor.clear.cgColor
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        //        for card in cardButtons{
+//            card.layer.backgroundColor = UIColor.clear.cgColor
+//        }
         updateViewFromModel()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        DispatchQueue.main.async() {
+            
+            //need these to update the frame of the cards
+            self.grid.frame = self.cardArea.bounds
+            self.updateViewFromModel()
+            
+            //need to call this to get edges perfect everytime a rotation happens
+            for card in self.cards{
+                card.setNeedsDisplay()
+            }
+        }
+    }
+    
     private func updateViewFromModel(){
+        
+        var numberOfCardsOnTable = game.cardsOnTable.count
+        //update frames for cards
+        var rows = 1 , columns = 1
+        for multiple in 2...Int(sqrt(Double(numberOfCardsOnTable))){
+            if numberOfCardsOnTable % Int(multiple) == 0{
+                columns = multiple
+                rows = numberOfCardsOnTable / multiple
+            }
+            
+            grid.dimensions.rowCount = rows
+            grid.dimensions.columnCount = columns
+        }
+        
+        
         for index in game.cardsOnTable.indices{
             let card = game.cardsOnTable[index]
-            let cardButton = cardButtons[index]
+//            let cardButton = cardButtons[index]
+            
+            //set the frame of the card
+            if let frame = grid[index]{
+                //check if the cardview exists already, rewrite the frame
+                if index<cards.count{
+                    cards[index].frame = frame
+                }else{ //if it doesn't exist, create the view and add it to the card area and array of cards
+                    let newCard = CardView(frame: frame)
+                    cards.append(newCard)
+                    cardArea.addSubview(newCard)
+                }
+            }
+            let cardView = cards[index]
+            
             var cardString = ""
             for _ in 1...card.number{
                 cardString += card.symbol.rawValue
             }
             
             if card.color == UIColor.clear{
-                restartButton(cardButton)
+//                restartButton(cardButton)
             }else{
-                cardButton.layer.backgroundColor = UIColor.lightGray.cgColor
-                cardButton.isEnabled = true
+//                cardView.backgroundColor = UIColor.green
+                
+                //TODO: add/enable swipe gesture
+                
+//                cardButton.layer.backgroundColor = UIColor.lightGray.cgColor
+//                cardButton.isEnabled = true
                 var attributes: [NSAttributedString.Key: Any] = [:]
                 if card.shading == SetCard.Shading.open{
                     attributes = [
@@ -77,20 +129,24 @@ class ViewController: UIViewController {
                     ]
                 }
                 let attributedCardString = NSAttributedString(string: cardString, attributes: attributes)
-                cardButton.setTitle(cardString, for: UIControl.State.normal)
-                cardButton.setAttributedTitle(attributedCardString, for: UIControl.State.normal)
+                
+//                cardButton.setTitle(cardString, for: UIControl.State.normal)
+//                cardButton.setAttributedTitle(attributedCardString, for: UIControl.State.normal)
             }
             
             if game.selectedCardIndices.contains(index){
-                cardButton.layer.borderWidth = 3.0
-                cardButton.layer.borderColor = UIColor.blue.cgColor
+                
+//                cardButton.layer.borderWidth = 3.0
+//                cardButton.layer.borderColor = UIColor.blue.cgColor
                 if game.matchedCardIndices.contains(index){
-                    cardButton.layer.borderColor = UIColor.green.cgColor
-                    cardButton.isEnabled = false
+//                    cardButton.layer.borderColor = UIColor.green.cgColor
+//                    cardButton.isEnabled = false
                 }else if game.mismatchedCardIndices.contains(index){
-                    cardButton.layer.borderColor = UIColor.red.cgColor
+//                    cardButton.layer.borderColor = UIColor.red.cgColor
                 }
-            }else{ cardButton.layer.borderWidth = 0 }
+            }
+//            else{ cardButton.layer.borderWidth = 0 }
+            viewDidLayoutSubviews()
         }
         
         dealMoreCardsButton.isEnabled = game.cardsInDeck.count > 0
