@@ -68,7 +68,7 @@ class ViewController: UIViewController {
     
     private func updateViewFromModel(){
         
-        var numberOfCardsOnTable = game.cardsOnTable.count
+        let numberOfCardsOnTable = game.cardsOnTable.count
         //update frames for cards
         var rows = 1 , columns = 1
         for multiple in 2...Int(sqrt(Double(numberOfCardsOnTable))){
