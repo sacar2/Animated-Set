@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var dealMoreCardsButton: UIButton!
     @IBAction func dealMoreCards(_ sender: UIButton) {
         game.deal3Cards()
+        refreshCards()
         updateViewFromModel()
     }
     
@@ -51,15 +52,17 @@ class ViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         DispatchQueue.main.async() {
-            
             //need these to update the frame of the cards
             self.grid.frame = self.cardArea.bounds
             self.updateViewFromModel()
-            
-            //need to call this to get edges perfect everytime a rotation happens
-            for card in self.cards{
-                card.setNeedsDisplay()
-            }
+            self.refreshCards()
+        }
+    }
+    
+    private func refreshCards(){
+        //need to call this to get edges perfect everytime a rotation happens
+        for card in self.cards{
+            card.setNeedsDisplay()
         }
     }
     

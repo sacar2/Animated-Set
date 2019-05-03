@@ -36,11 +36,10 @@ class SetGame{
         cardsInDeck.shuffle()
     }
     
-    //only deal cards if there's space on the table
     func deal3Cards(){
         if matchedCardIndices.isEmpty{
             for _ in 1...3{
-                if cardsOnTable.count < 24, let randomCard = cardsInDeck.popLast(){
+                if let randomCard = cardsInDeck.popLast(){
                     cardsOnTable.append(randomCard)
                 }
             }
@@ -51,6 +50,7 @@ class SetGame{
         if isThereAnAvailableSetOnTheTable() == true{
             //TODO: Negate points
         }
+        
     }
     
     func isThereAnAvailableSetOnTheTable() -> Bool{

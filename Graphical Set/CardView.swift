@@ -28,7 +28,7 @@ class CardView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        let cardFramePath = UIBezierPath(roundedRect: CGRect(origin: CGPoint(x: 5.0, y: 5.0), size: CGSize(width: bounds.width-10.0, height: bounds.height-10.0)), cornerRadius: 20.0)
+        let cardFramePath = UIBezierPath(roundedRect: CGRect(origin: CGPoint(x: 5.0, y: 5.0), size: CGSize(width: bounds.width-10.0, height: bounds.height-10.0)), cornerRadius: 10.0)
         cardFramePath.addClip()
         UIColor.white.setFill()
         cardFramePath.fill()
