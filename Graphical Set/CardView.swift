@@ -19,7 +19,6 @@ class CardView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonSetup()
-//        fatalError("init(coder:) has not been implemented")
     }
     
     func commonSetup() {

@@ -34,8 +34,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var dealMoreCardsButton: UIButton!
     @IBAction func dealMoreCards(_ sender: UIButton) {
         game.deal3Cards()
-        refreshCards()
         updateViewFromModel()
+        refreshCards()
     }
     
     @IBAction func tappedCardButton(_ sender: UIButton) {
@@ -45,10 +45,22 @@ class ViewController: UIViewController {
 //        }
     }
     
+    ///Selects a card when it is tapped, updating the model for the corresponding index and then updating the UI to show that selection
+    @objc func tappedCardView(recognizer: UITapGestureRecognizer){
+        switch recognizer.state{
+            case .changed: fallthrough
+            case .ended:
+                if let view = recognizer.view{
+                    if let index = cards.firstIndex(of: view as! CardView){
+                        game.selectCard(forIndex: index)
+                        updateViewFromModel()
+                    }
+                }
+            default: break
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-//        for card in cardButtons{
-//            card.layer.backgroundColor = UIColor.clear.cgColor
-//        }
         updateViewFromModel()
     }
     
@@ -61,8 +73,9 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Redraws the cards to display them correctly by calling setNeedsDisplay.
+    /// This is needed to get the corners rounded correctly.
     private func refreshCards(){
-        //need to call this to get edges perfect everytime a rotation happens
         for card in self.cards{
             card.setNeedsDisplay()
         }
@@ -94,6 +107,8 @@ class ViewController: UIViewController {
                     let newCard = CardView(frame: frame)
                     cards.append(newCard)
                     cardArea.addSubview(newCard)
+                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.tappedCardView(recognizer:)))
+                    newCard.addGestureRecognizer(tapGesture)
                 }
             }
             
