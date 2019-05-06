@@ -23,9 +23,11 @@ class ViewController: UIViewController {
     
     @IBAction func newGame(_ sender: UIButton) {
         game = SetGame()
-//        for index in cardButtons.indices{
-//            restartButton(cardButtons[index])
-//        }
+        for index in cards.indices{
+            cards[index].removeFromSuperview()
+        }
+        cards.removeAll()
+        game = SetGame()
         updateViewFromModel()
     }
     
@@ -44,7 +46,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //        for card in cardButtons{
+//        for card in cardButtons{
 //            card.layer.backgroundColor = UIColor.clear.cgColor
 //        }
         updateViewFromModel()
@@ -52,7 +54,7 @@ class ViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         DispatchQueue.main.async() {
-            //need these to update the frame of the cards
+            //need these to update the frame of the cards when the view is rotated
             self.grid.frame = self.cardArea.bounds
             self.updateViewFromModel()
             self.refreshCards()
@@ -67,7 +69,6 @@ class ViewController: UIViewController {
     }
     
     private func updateViewFromModel(){
-        
         let numberOfCardsOnTable = game.cardsOnTable.count
         //update frames for cards
         var rows = 1 , columns = 1
@@ -81,15 +82,13 @@ class ViewController: UIViewController {
             grid.dimensions.columnCount = columns
         }
         
-        
         for index in game.cardsOnTable.indices{
             let card = game.cardsOnTable[index]
 //            let cardButton = cardButtons[index]
             
             //set the frame of the card
             if let frame = grid[index]{
-                //check if the cardview exists already, rewrite the frame
-                if index<cards.count{
+                if index<cards.count{ //check if the cardview exists already, rewrite the frame
                     cards[index].frame = frame
                 }else{ //if it doesn't exist, create the view and add it to the card area and array of cards
                     let newCard = CardView(frame: frame)
@@ -97,8 +96,8 @@ class ViewController: UIViewController {
                     cardArea.addSubview(newCard)
                 }
             }
-            let cardView = cards[index]
             
+            let cardView = cards[index]
             var cardString = ""
             for _ in 1...card.number{
                 cardString += card.symbol.rawValue
@@ -107,13 +106,10 @@ class ViewController: UIViewController {
             if card.color == UIColor.clear{
 //                restartButton(cardButton)
             }else{
-//                cardView.backgroundColor = UIColor.green
-                
                 //TODO: add/enable swipe gesture
-                
-//                cardButton.layer.backgroundColor = UIColor.lightGray.cgColor
-//                cardButton.isEnabled = true
+                cardView.isUserInteractionEnabled = true
                 var attributes: [NSAttributedString.Key: Any] = [:]
+                
                 if card.shading == SetCard.Shading.open{
                     attributes = [
                         NSAttributedString.Key.strokeWidth: 5,
@@ -132,23 +128,29 @@ class ViewController: UIViewController {
                     ]
                 }
                 let attributedCardString = NSAttributedString(string: cardString, attributes: attributes)
-                
-//                cardButton.setTitle(cardString, for: UIControl.State.normal)
-//                cardButton.setAttributedTitle(attributedCardString, for: UIControl.State.normal)
-            }
-            
-            if game.selectedCardIndices.contains(index){
-                
-//                cardButton.layer.borderWidth = 3.0
-//                cardButton.layer.borderColor = UIColor.blue.cgColor
-                if game.matchedCardIndices.contains(index){
-//                    cardButton.layer.borderColor = UIColor.green.cgColor
-//                    cardButton.isEnabled = false
-                }else if game.mismatchedCardIndices.contains(index){
-//                    cardButton.layer.borderColor = UIColor.red.cgColor
+                if cardView.subviews.isEmpty{
+                    let newLabel = UILabel(frame: cardView.bounds)
+                    newLabel.text = cardString
+                    newLabel.attributedText = attributedCardString
+                    newLabel.textAlignment = .center
+                    cardView.addSubview(newLabel)
+                }else{
+                    let label = cardView.subviews[0]
+                    label.frame = cardView.bounds
                 }
             }
-//            else{ cardButton.layer.borderWidth = 0 }
+            
+            //set border colours
+            if game.selectedCardIndices.contains(index){
+                cardView.layer.borderWidth = 3.0
+                cardView.layer.borderColor = UIColor.blue.cgColor
+                if game.matchedCardIndices.contains(index){
+                    cardView.isUserInteractionEnabled = false
+                    cardView.layer.borderColor = UIColor.green.cgColor
+                }else if game.mismatchedCardIndices.contains(index){
+                    cardView.layer.borderColor = UIColor.red.cgColor
+                }
+            }else{ cardView.layer.borderWidth = 0 }
             viewDidLayoutSubviews()
         }
         

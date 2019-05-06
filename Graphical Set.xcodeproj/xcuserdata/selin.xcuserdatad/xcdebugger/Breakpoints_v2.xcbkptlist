@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphical Set/ViewController.swift"
-            timestampString = "578535421.753304"
+            timestampString = "578855484.72295"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "updateViewFromModel()"
             landmarkType = "7">
          </BreakpointContent>
