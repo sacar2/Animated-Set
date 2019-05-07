@@ -82,16 +82,13 @@ class ViewController: UIViewController {
                 columns = multiple
                 rows = numberOfCardsOnTable / multiple
             }
-            
             grid.dimensions.rowCount = rows
             grid.dimensions.columnCount = columns
         }
         
         for index in game.cardsOnTable.indices{
             let card = game.cardsOnTable[index]
-            
-            //set the frame of the card
-            if let frame = grid[index]{
+            if let frame = grid[index]{//set the frame of the card
                 if index<cards.count{ //check if the cardview exists already, rewrite the frame
                     cards[index].frame = frame
                 }else{ //if it doesn't exist, create the view and add it to the card area and array of cards
@@ -130,18 +127,17 @@ class ViewController: UIViewController {
                 ]
             }
             let attributedCardString = NSAttributedString(string: cardString, attributes: attributes)
+            var cardViewLabel: UILabel
             if cardView.subviews.isEmpty{
-                let newLabel = UILabel(frame: cardView.bounds)
-                newLabel.text = cardString
-                newLabel.attributedText = attributedCardString
-                newLabel.textAlignment = .center
-                cardView.addSubview(newLabel)
+                cardViewLabel = UILabel(frame: cardView.bounds)
+                cardViewLabel.textAlignment = .center
+                cardView.addSubview(cardViewLabel)
             }else{
-                let label = cardView.subviews[0] as! UILabel
-                label.text = cardString
-                label.attributedText = attributedCardString
-                label.frame = cardView.bounds
+                cardViewLabel = cardView.subviews[0] as! UILabel
+                cardViewLabel.frame = cardView.bounds
             }
+            cardViewLabel.text = cardString
+            cardViewLabel.attributedText = attributedCardString
             
             //set border colours
             if game.selectedCardIndices.contains(index){
@@ -156,10 +152,12 @@ class ViewController: UIViewController {
             }else{ cardView.layer.borderWidth = 0 }
             viewDidLayoutSubviews()
         }
-        
         dealMoreCardsButton.isEnabled = game.cardsInDeck.count > 0
         setScoreLabel(withScore: game.score)
-        
+        updateGameFeedbackLabel()
+    }
+    
+    private func updateGameFeedbackLabel(){
         if !game.matchedCardIndices.isEmpty{
             gameFeedbackLabel.text = "You found a set 😁"
         }else if !game.mismatchedCardIndices.isEmpty{
