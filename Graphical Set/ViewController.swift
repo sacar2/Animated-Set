@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     
     var cards: [CardView] = []
     
-//    @IBOutlet var cardButtons: [UIButton]!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var gameFeedbackLabel: UILabel!
     
@@ -36,13 +35,6 @@ class ViewController: UIViewController {
         game.deal3Cards()
         updateViewFromModel()
         refreshCards()
-    }
-    
-    @IBAction func tappedCardButton(_ sender: UIButton) {
-//        if let buttonIndex = cardButtons.index(of: sender){
-//            game.selectCard(forIndex: buttonIndex)
-//            updateViewFromModel()
-//        }
     }
     
     ///Selects a card when it is tapped, updating the model for the corresponding index and then updating the UI to show that selection
@@ -97,7 +89,6 @@ class ViewController: UIViewController {
         
         for index in game.cardsOnTable.indices{
             let card = game.cardsOnTable[index]
-//            let cardButton = cardButtons[index]
             
             //set the frame of the card
             if let frame = grid[index]{
