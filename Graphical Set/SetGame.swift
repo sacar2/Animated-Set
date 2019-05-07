@@ -17,6 +17,7 @@ class SetGame{
     private(set) var matchedCardIndices = [Int]()
     private(set) var mismatchedCardIndices = [Int]()
     private var setsOf3Cards = 0
+    weak var delegate: SetGameDelegate?
     
     init(){
         createDeck()
@@ -89,7 +90,7 @@ class SetGame{
     
     func removeMatchedCards(){
         //during the next selection or tap to the "add more cards" button, manage the matched cards, replace the cards with cards from the deck
-        for matchIndex in matchedCardIndices.reversed(){
+        for matchIndex in matchedCardIndices.sorted(by: >){
             if cardsInDeck.count > 0{
                 cardsOnTable[matchIndex] = cardsInDeck.removeLast()
             }else{ //if there are no more cards in the deck, remove the matched cards from the view
@@ -99,7 +100,8 @@ class SetGame{
                 selectedCardIndices.remove(at: selectedCardIndex)
             }
         }
-        //reset the matched card indices to an empty array
+        //remove cards from view and reset the matched card indices to an empty array
+        delegate?.removeCardsFromView(forCardIndices: matchedCardIndices)
         matchedCardIndices.removeAll()
     }
     
@@ -114,7 +116,6 @@ class SetGame{
             return values[0] != values[1] && values[1] != values[2] && values[0] != values[2]
         }
         
-        //only doing multiple if statements instead of one large one because it's easier to read
         //cards must all be the same colour or all different colours
         //cards must all be the same number or all different numbers
         //cards must all be the same shading or all different shades

@@ -50,6 +50,10 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        game.delegate = self
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         updateViewFromModel()
     }
@@ -76,18 +80,19 @@ class ViewController: UIViewController {
         
         for index in game.cardsOnTable.indices{
             let card = game.cardsOnTable[index]
-            
             updateCardViewFrames(withIndex: index)
-            
             let cardView = cards[index]
+            //TODO: add/enable swipe gesture
+            cardView.isUserInteractionEnabled = true
+            
+            //------------------------------------------------------------
+            //CREATE CARDSTRING
             var cardString = ""
             for _ in 1...card.number{
                 cardString += card.symbol.rawValue
             }
-            //TODO: add/enable swipe gesture
-            cardView.isUserInteractionEnabled = true
+            // CREATE ATTRIBUTED CARD STRING
             var attributes: [NSAttributedString.Key: Any] = [:]
-            
             if card.shading == SetCard.Shading.open{
                 attributes = [
                     NSAttributedString.Key.strokeWidth: 5,
@@ -106,6 +111,8 @@ class ViewController: UIViewController {
                 ]
             }
             let attributedCardString = NSAttributedString(string: cardString, attributes: attributes)
+            
+            //CREATE CARDVIEW LABELS WITH SET TEXT
             var cardViewLabel: UILabel
             if cardView.subviews.isEmpty{
                 cardViewLabel = UILabel(frame: cardView.bounds)
@@ -117,6 +124,7 @@ class ViewController: UIViewController {
             }
             cardViewLabel.text = cardString
             cardViewLabel.attributedText = attributedCardString
+            //------------------------------------------------------------
             
             setBordersForCard(forCardView: cardView, withCardIndex: index)
             viewDidLayoutSubviews()
@@ -180,5 +188,14 @@ class ViewController: UIViewController {
 
     private func setScoreLabel(withScore score: Int){
         scoreLabel.text = "Score: \(score)"
+    }
+}
+
+extension ViewController: SetGameDelegate{
+    func removeCardsFromView(forCardIndices indices: [Int]) {
+        for index in indices.sorted(by: >){
+            cards[index].removeFromSuperview()
+            cards.remove(at: index)
+        }
     }
 }
