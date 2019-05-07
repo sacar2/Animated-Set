@@ -139,22 +139,26 @@ class ViewController: UIViewController {
             cardViewLabel.text = cardString
             cardViewLabel.attributedText = attributedCardString
             
-            //set border colours
-            if game.selectedCardIndices.contains(index){
-                cardView.layer.borderWidth = 3.0
-                cardView.layer.borderColor = UIColor.blue.cgColor
-                if game.matchedCardIndices.contains(index){
-                    cardView.isUserInteractionEnabled = false
-                    cardView.layer.borderColor = UIColor.green.cgColor
-                }else if game.mismatchedCardIndices.contains(index){
-                    cardView.layer.borderColor = UIColor.red.cgColor
-                }
-            }else{ cardView.layer.borderWidth = 0 }
+            setBordersForCard(forCardView: cardView, withCardIndex: index)
             viewDidLayoutSubviews()
         }
         dealMoreCardsButton.isEnabled = game.cardsInDeck.count > 0
         setScoreLabel(withScore: game.score)
         updateGameFeedbackLabel()
+    }
+    
+    ///Sets border colours on the given CardView, depending if its index matches a selected card, matched card, mismatched card, or neither
+    private func setBordersForCard(forCardView cardView: CardView, withCardIndex cardIndex: Int){
+        if game.selectedCardIndices.contains(cardIndex){
+            cardView.layer.borderWidth = 3.0
+            cardView.layer.borderColor = UIColor.blue.cgColor
+            if game.matchedCardIndices.contains(cardIndex){
+                cardView.isUserInteractionEnabled = false
+                cardView.layer.borderColor = UIColor.green.cgColor
+            }else if game.mismatchedCardIndices.contains(cardIndex){
+                cardView.layer.borderColor = UIColor.red.cgColor
+            }
+        }else{ cardView.layer.borderWidth = 0 }
     }
     
     private func updateGameFeedbackLabel(){
