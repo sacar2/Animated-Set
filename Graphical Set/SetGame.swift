@@ -88,12 +88,12 @@ class SetGame{
     }
     
     func removeMatchedCards(){
-        //during the next selection or tap to the "add 3 more cards" button, manage the 3 matched cards , replace the cards with 3 from the deck
-        for matchIndex in matchedCardIndices{
+        //during the next selection or tap to the "add more cards" button, manage the matched cards, replace the cards with cards from the deck
+        for matchIndex in matchedCardIndices.reversed(){
             if cardsInDeck.count > 0{
                 cardsOnTable[matchIndex] = cardsInDeck.removeLast()
-            }else{ //if there are no more items in the deck, make that card invisible
-                cardsOnTable[matchIndex].color = UIColor.clear
+            }else{ //if there are no more cards in the deck, remove the matched cards from the view
+                cardsOnTable.remove(at: matchIndex)
             }
             if let selectedCardIndex = selectedCardIndices.index(of: matchIndex){
                 selectedCardIndices.remove(at: selectedCardIndex)

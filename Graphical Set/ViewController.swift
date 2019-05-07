@@ -117,42 +117,39 @@ class ViewController: UIViewController {
             for _ in 1...card.number{
                 cardString += card.symbol.rawValue
             }
+            //TODO: add/enable swipe gesture
+            cardView.isUserInteractionEnabled = true
+            var attributes: [NSAttributedString.Key: Any] = [:]
             
-            if card.color == UIColor.clear{
-//                restartButton(cardButton)
+            if card.shading == SetCard.Shading.open{
+                attributes = [
+                    NSAttributedString.Key.strokeWidth: 5,
+                    NSAttributedString.Key.strokeColor: card.color
+                ]
+            } else if card.shading == SetCard.Shading.solid{
+                attributes = [
+                    NSAttributedString.Key.strokeWidth: -1,
+                    NSAttributedString.Key.foregroundColor: card.color
+                ]
+            } else if card.shading == SetCard.Shading.striped{
+                attributes = [
+                    NSAttributedString.Key.strokeWidth: -1,
+                    NSAttributedString.Key.strokeColor: card.color,
+                    NSAttributedString.Key.foregroundColor: card.color.withAlphaComponent(0.15)
+                ]
+            }
+            let attributedCardString = NSAttributedString(string: cardString, attributes: attributes)
+            if cardView.subviews.isEmpty{
+                let newLabel = UILabel(frame: cardView.bounds)
+                newLabel.text = cardString
+                newLabel.attributedText = attributedCardString
+                newLabel.textAlignment = .center
+                cardView.addSubview(newLabel)
             }else{
-                //TODO: add/enable swipe gesture
-                cardView.isUserInteractionEnabled = true
-                var attributes: [NSAttributedString.Key: Any] = [:]
-                
-                if card.shading == SetCard.Shading.open{
-                    attributes = [
-                        NSAttributedString.Key.strokeWidth: 5,
-                        NSAttributedString.Key.strokeColor: card.color
-                    ]
-                } else if card.shading == SetCard.Shading.solid{
-                    attributes = [
-                        NSAttributedString.Key.strokeWidth: -1,
-                        NSAttributedString.Key.foregroundColor: card.color
-                    ]
-                } else if card.shading == SetCard.Shading.striped{
-                    attributes = [
-                        NSAttributedString.Key.strokeWidth: -1,
-                        NSAttributedString.Key.strokeColor: card.color,
-                        NSAttributedString.Key.foregroundColor: card.color.withAlphaComponent(0.15)
-                    ]
-                }
-                let attributedCardString = NSAttributedString(string: cardString, attributes: attributes)
-                if cardView.subviews.isEmpty{
-                    let newLabel = UILabel(frame: cardView.bounds)
-                    newLabel.text = cardString
-                    newLabel.attributedText = attributedCardString
-                    newLabel.textAlignment = .center
-                    cardView.addSubview(newLabel)
-                }else{
-                    let label = cardView.subviews[0]
-                    label.frame = cardView.bounds
-                }
+                let label = cardView.subviews[0] as! UILabel
+                label.text = cardString
+                label.attributedText = attributedCardString
+                label.frame = cardView.bounds
             }
             
             //set border colours
@@ -183,14 +180,5 @@ class ViewController: UIViewController {
 
     private func setScoreLabel(withScore score: Int){
         scoreLabel.text = "Score: \(score)"
-    }
-    
-    private func restartButton(_ button: UIButton){
-        button.layer.backgroundColor = UIColor.clear.cgColor
-        button.isEnabled = false
-        button.setTitle("", for: UIControl.State.normal)
-        button.setAttributedTitle(NSAttributedString(), for: UIControl.State.normal)
-        button.layer.cornerRadius = 8.0
-        button.layer.borderWidth = 0.0
     }
 }
