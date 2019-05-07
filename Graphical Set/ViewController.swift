@@ -10,15 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var game = SetGame()
-    
-    @IBOutlet weak var cardArea: UIView!
-    lazy var grid = Grid(layout: .dimensions(rowCount: 4, columnCount: 3), frame: cardArea.bounds)
-    
     var cards: [CardView] = []
-    
+    lazy var grid = Grid(layout: .dimensions(rowCount: 4, columnCount: 3), frame: cardArea.bounds)
+    private var game = SetGame()
+
+    @IBOutlet weak var cardArea: UIView!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var gameFeedbackLabel: UILabel!
+    @IBOutlet weak var dealMoreCardsButton: UIButton!
+    
+    @IBAction func dealMoreCards(_ sender: UIButton) {
+        game.deal3Cards()
+        updateViewFromModel()
+        refreshCards()
+    }
     
     @IBAction func newGame(_ sender: UIButton) {
         game = SetGame()
@@ -30,14 +35,7 @@ class ViewController: UIViewController {
         updateViewFromModel()
     }
     
-    @IBOutlet weak var dealMoreCardsButton: UIButton!
-    @IBAction func dealMoreCards(_ sender: UIButton) {
-        game.deal3Cards()
-        updateViewFromModel()
-        refreshCards()
-    }
-    
-    ///Selects a card when it is tapped, updating the model for the corresponding index and then updating the UI to show that selection
+    ///Selects a card when it is tapped, updating the model for the corresponding index and then updating the UI to show that selection.
     @objc func tappedCardView(recognizer: UITapGestureRecognizer){
         switch recognizer.state{
             case .changed: fallthrough
@@ -74,31 +72,12 @@ class ViewController: UIViewController {
     }
     
     private func updateViewFromModel(){
-        let numberOfCardsOnTable = game.cardsOnTable.count
-        //update frames for cards
-        var rows = 1 , columns = 1
-        for multiple in 2...Int(sqrt(Double(numberOfCardsOnTable))){
-            if numberOfCardsOnTable % Int(multiple) == 0{
-                columns = multiple
-                rows = numberOfCardsOnTable / multiple
-            }
-            grid.dimensions.rowCount = rows
-            grid.dimensions.columnCount = columns
-        }
+        recalculateFramesForCardsOnTable()
         
         for index in game.cardsOnTable.indices{
             let card = game.cardsOnTable[index]
-            if let frame = grid[index]{//set the frame of the card
-                if index<cards.count{ //check if the cardview exists already, rewrite the frame
-                    cards[index].frame = frame
-                }else{ //if it doesn't exist, create the view and add it to the card area and array of cards
-                    let newCard = CardView(frame: frame)
-                    cards.append(newCard)
-                    cardArea.addSubview(newCard)
-                    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.tappedCardView(recognizer:)))
-                    newCard.addGestureRecognizer(tapGesture)
-                }
-            }
+            
+            updateCardViewFrames(withIndex: index)
             
             let cardView = cards[index]
             var cardString = ""
@@ -147,7 +126,35 @@ class ViewController: UIViewController {
         updateGameFeedbackLabel()
     }
     
-    ///Sets border colours on the given CardView, depending if its index matches a selected card, matched card, mismatched card, or neither
+    /// Recalculates the frames for the cards that appear on the table.
+    private func recalculateFramesForCardsOnTable(){
+        let numberOfCardsOnTable = game.cardsOnTable.count
+        var rows = 1 , columns = 1
+        for multiple in 2...Int(sqrt(Double(numberOfCardsOnTable))){
+            if numberOfCardsOnTable % Int(multiple) == 0{
+                columns = multiple
+                rows = numberOfCardsOnTable / multiple
+            }
+            grid.dimensions.rowCount = rows
+            grid.dimensions.columnCount = columns
+        }
+    }
+    
+    private func updateCardViewFrames(withIndex index: Int){
+        if let frame = grid[index]{//get the frame of the card
+            if index<cards.count{ //check if the cardview exists already, rewrite the frame
+                cards[index].frame = frame
+            }else{ //if it doesn't exist, create the view and add it to the card area and array of cards
+                let newCard = CardView(frame: frame)
+                cards.append(newCard)
+                cardArea.addSubview(newCard)
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.tappedCardView(recognizer:)))
+                newCard.addGestureRecognizer(tapGesture)
+            }
+        }
+    }
+    
+    ///Sets border colours on the given CardView, depending if its index matches a selected card, matched card, mismatched card, or neither.
     private func setBordersForCard(forCardView cardView: CardView, withCardIndex cardIndex: Int){
         if game.selectedCardIndices.contains(cardIndex){
             cardView.layer.borderWidth = 3.0
