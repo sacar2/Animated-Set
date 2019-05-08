@@ -26,13 +26,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func newGame(_ sender: UIButton) {
+        endLastGame()
+        startNewGame()
+    }
+    
+    private func startNewGame(){
         game = SetGame()
+        game.delegate = self
+        updateViewFromModel()
+    }
+    
+    private func endLastGame(){
         for index in cards.indices{
             cards[index].removeFromSuperview()
         }
         cards.removeAll()
-        game = SetGame()
-        updateViewFromModel()
     }
     
     ///Selects a card when it is tapped, updating the model for the corresponding index and then updating the UI to show that selection.
