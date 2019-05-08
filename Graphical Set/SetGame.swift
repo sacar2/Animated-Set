@@ -154,6 +154,6 @@ class SetGame{
     }
     
     private func increaseScoreDueToMatch(){
-        score += (11 - setsOf3Cards) //if there are more cards on the table, reduce additional score. max sets is 8
+        score += (30 - setsOf3Cards) //if there are more cards on the table, reduce additional score. max sets is 27
     }
 }
