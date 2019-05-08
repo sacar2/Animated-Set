@@ -51,7 +51,6 @@ class SetGame{
         if isThereAnAvailableSetOnTheTable() == true{
             //TODO: Negate points
         }
-        
     }
     
     func isThereAnAvailableSetOnTheTable() -> Bool{
@@ -60,15 +59,13 @@ class SetGame{
         return false
     }
 
-    
     func selectCard(forIndex index: Int){
         //assert that the cards on the table contains that index (if it doesn't then something else is screwed up, so crash!
         assert (cardsOnTable.indices.contains(index), "card tapped is out of bounds of playable cards")
-        removeMatchedCards()
+        let cardsRemovedFromView = getTheNumberOfCardsToRemoveInTheView(priorToIndex: index)
         
-        if !mismatchedCardIndices.isEmpty{
-            mismatchedCardIndices.removeAll() //if there are mismatches, remove them
-        }
+        if !matchedCardIndices.isEmpty{removeMatchedCards()}
+        if !mismatchedCardIndices.isEmpty{mismatchedCardIndices.removeAll()}
         
         //if card is already selected, unselect the card
         if let indexOfSelectedCard = selectedCardIndices.index(of: index){
@@ -79,7 +76,7 @@ class SetGame{
             if selectedCardIndices.count == 3{
                 selectedCardIndices.removeAll()
             }
-            selectedCardIndices.append(index)
+            selectedCardIndices.append(index-cardsRemovedFromView)
             
             //if adding the new card equals 3, check if its a set
             if selectedCardIndices.count == 3{
@@ -88,7 +85,17 @@ class SetGame{
         }
     }
     
-    func removeMatchedCards(){
+    private func getTheNumberOfCardsToRemoveInTheView(priorToIndex index: Int) -> Int{
+        var cardsRemovedFromView = 0
+        for matchedIndex in matchedCardIndices{
+            if index>matchedIndex{
+                cardsRemovedFromView += 1
+            }
+        }
+        return cardsRemovedFromView
+    }
+    
+    private func removeMatchedCards(){
         //during the next selection or tap to the "add more cards" button, manage the matched cards, replace the cards with cards from the deck
         for matchIndex in matchedCardIndices.sorted(by: >){
             if cardsInDeck.count > 0{
@@ -106,7 +113,7 @@ class SetGame{
     }
     
     //check if they are all equal or all different for each property. as soon as one is false, return and do nothing
-    func verifySet(forCardIndices indices: [Int]){
+    private func verifySet(forCardIndices indices: [Int]){
         //had to template the equatable type: call function with type T, where T is a template for all equatable types
         func checkIfAllEqualForValues<T: Equatable>(_ values: [T]) -> Bool{
             return (values[0] == values[1] && values[1] == values[2])
