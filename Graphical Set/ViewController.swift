@@ -20,9 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var dealMoreCardsButton: UIButton!
     
     @IBAction func dealMoreCards(_ sender: UIButton) {
-        game.deal3Cards()
-        updateViewFromModel()
-        refreshCards()
+        dealCards()
     }
     
     @IBAction func newGame(_ sender: UIButton) {
@@ -60,6 +58,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         game.delegate = self
+        setupSwipeDownGesture()
+        setupRotationGesture()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,6 +73,28 @@ class ViewController: UIViewController {
             self.updateViewFromModel()
             self.refreshCards()
         }
+    }
+    
+    @objc private func dealCards(){
+        game.deal3Cards()
+        updateViewFromModel()
+        refreshCards()
+    }
+    
+    private func setupSwipeDownGesture(){
+        let swipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.dealCards))
+        swipeDownGestureRecognizer.direction = UISwipeGestureRecognizer.Direction.down
+        view.addGestureRecognizer(swipeDownGestureRecognizer)
+    }
+    
+    private func setupRotationGesture(){
+        let rotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(ViewController.shuffleCardsOnTable))
+        view.addGestureRecognizer(rotationGestureRecognizer)
+    }
+    
+    @objc private func shuffleCardsOnTable(){
+        game.shuffleCardsOnTable()
+        updateViewFromModel()
     }
     
     /// Redraws the cards to display them correctly by calling setNeedsDisplay.
