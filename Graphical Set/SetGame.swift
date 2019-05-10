@@ -86,13 +86,18 @@ class SetGame{
     }
     
     private func getTheNumberOfCardsToRemoveInTheView(priorToIndex index: Int) -> Int{
-        var cardsRemovedFromView = 0
+        var cardsRemovedFromViewPriorToIndex = 0
         for matchedIndex in matchedCardIndices{
             if index>matchedIndex{
-                cardsRemovedFromView += 1
+                cardsRemovedFromViewPriorToIndex += 1
             }
         }
-        return cardsRemovedFromView
+        if cardsInDeck.count >= cardsRemovedFromViewPriorToIndex{
+            cardsRemovedFromViewPriorToIndex = 0
+        }else{
+            cardsRemovedFromViewPriorToIndex -= cardsInDeck.count
+        }
+        return cardsRemovedFromViewPriorToIndex
     }
     
     private func removeMatchedCards(){
