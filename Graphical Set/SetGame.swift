@@ -117,7 +117,7 @@ class SetGame{
         matchedCardIndices.removeAll()
     }
     
-    //check if they are all equal or all different for each property. as soon as one is false, return and do nothing
+    //Verify that if selected card indices are all equal or all different for each property. As soon as one is false, return and do nothing
     private func verifySet(forCardIndices indices: [Int]){
         //had to template the equatable type: call function with type T, where T is a template for all equatable types
         func checkIfAllEqualForValues<T: Equatable>(_ values: [T]) -> Bool{
@@ -128,10 +128,7 @@ class SetGame{
             return values[0] != values[1] && values[1] != values[2] && values[0] != values[2]
         }
         
-        //cards must all be the same colour or all different colours
-        //cards must all be the same number or all different numbers
-        //cards must all be the same shading or all different shades
-        //cards must all be the same symbol or all different symbols
+        //cards must all be the same <colour/number/shading/symbol> or all different <colours/numbers/shadings/symbols>
         if (checkIfAllEqualForValues([cardsOnTable[indices[0]].color, cardsOnTable[indices[1]].color, cardsOnTable[indices[2]].color]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].color, cardsOnTable[indices[1]].color, cardsOnTable[indices[2]].color])) &&
             (checkIfAllEqualForValues([cardsOnTable[indices[0]].number, cardsOnTable[indices[1]].number, cardsOnTable[indices[2]].number]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].number, cardsOnTable[indices[1]].number, cardsOnTable[indices[2]].number])) &&
             (checkIfAllEqualForValues([cardsOnTable[indices[0]].shading, cardsOnTable[indices[1]].shading, cardsOnTable[indices[2]].shading]) || checkIfAllDifferentForValues([cardsOnTable[indices[0]].shading, cardsOnTable[indices[1]].shading, cardsOnTable[indices[2]].shading])) &&
