@@ -189,7 +189,8 @@ class ViewController: UIViewController {
     private func setBordersForCard(forCardView cardView: CardView, withCardIndex cardIndex: Int){
         if game.selectedCardIndices.contains(cardIndex){
             cardView.layer.borderWidth = 3.0
-            cardView.layer.borderColor = UIColor.blue.cgColor
+            cardView.layer.cornerRadius = 15.0
+            cardView.layer.borderColor = UIColor.lightGray.cgColor
             if game.matchedCardIndices.contains(cardIndex){
                 cardView.isUserInteractionEnabled = false
                 cardView.layer.borderColor = UIColor.green.cgColor
