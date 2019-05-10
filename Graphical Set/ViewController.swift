@@ -10,8 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let aspectRatio:  CGFloat = 0.75
     var cards: [CardView] = []
-    lazy var grid = Grid(layout: .aspectRatio(0.75), frame: cardArea.bounds)
+    lazy var grid = Grid(layout: .aspectRatio(aspectRatio), frame: cardArea.bounds)
     private var game = SetGame()
 
     @IBOutlet weak var cardArea: UIView!
