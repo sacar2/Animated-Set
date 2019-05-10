@@ -10,23 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphical Set/ViewController.swift"
-            timestampString = "579117136.9150161"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
-            landmarkName = "removeCardsFromView(forCardIndices:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Graphical Set/ViewController.swift"
-            timestampString = "579117136.915779"
+            timestampString = "579139883.464216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
@@ -42,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphical Set/SetGame.swift"
-            timestampString = "579117136.916127"
+            timestampString = "579139883.464712"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
@@ -58,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphical Set/SetGame.swift"
-            timestampString = "579117136.916449"
+            timestampString = "579139883.464775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -74,12 +58,154 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphical Set/SetGame.swift"
-            timestampString = "579117136.9169869"
+            timestampString = "579139883.465102"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
             endingLineNumber = "98"
             landmarkName = "removeMatchedCards()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Graphical Set/ViewController.swift"
+            timestampString = "579139883.465188"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "ViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graphical_Set.ViewController.grid.getter : Graphical_Set.Grid"
+                  moduleName = "Graphical Set"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/selin/OneDrive%20-%20Avanade/_Courses%20and%20Training/Stanford%20iOS%202017/Assignments/Graphical%20Set/Graphical%20Set/ViewController.swift"
+                  timestampString = "579125981.989648"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "699">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graphical_Set.ViewController.grid.setter : Graphical_Set.Grid"
+                  moduleName = "Graphical Set"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/selin/OneDrive%20-%20Avanade/_Courses%20and%20Training/Stanford%20iOS%202017/Assignments/Graphical%20Set/Graphical%20Set/ViewController.swift"
+                  timestampString = "579125981.992433"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "721">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graphical_Set.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Graphical_Set.ViewController"
+                  moduleName = "Graphical Set"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/selin/OneDrive%20-%20Avanade/_Courses%20and%20Training/Stanford%20iOS%202017/Assignments/Graphical%20Set/Graphical%20Set/ViewController.swift"
+                  timestampString = "579125981.995288"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "284">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graphical_Set.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Graphical_Set.ViewController&gt;"
+                  moduleName = "Graphical Set"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/selin/OneDrive%20-%20Avanade/_Courses%20and%20Training/Stanford%20iOS%202017/Assignments/Graphical%20Set/Graphical%20Set/ViewController.swift"
+                  timestampString = "579125981.9978499"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "260">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Graphical Set/ViewController.swift"
+            timestampString = "579139883.46573"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "updateViewFromModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Graphical Set/Grid.swift"
+            timestampString = "579139883.466053"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "recalculate()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Graphical Set/Grid.swift"
+            timestampString = "579139883.46661"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "largestCellSizeThatFitsAspectRatio()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Graphical Set/Grid.swift"
+            timestampString = "579139883.4668961"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "cellSizeAssuming(rowCount:columnCount:minimumAllowedSize:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

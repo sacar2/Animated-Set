@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var cards: [CardView] = []
-    lazy var grid = Grid(layout: .dimensions(rowCount: 4, columnCount: 3), frame: cardArea.bounds)
+    lazy var grid = Grid(layout: .aspectRatio(0.75), frame: cardArea.bounds)
     private var game = SetGame()
 
     @IBOutlet weak var cardArea: UIView!
@@ -167,15 +167,7 @@ class ViewController: UIViewController {
     /// Recalculates the frames for the cards that appear on the table.
     private func recalculateFramesForCardsOnTable(){
         let numberOfCardsOnTable = game.cardsOnTable.count
-        var rows = 1 , columns = 1
-        for multiple in 2...Int(sqrt(Double(numberOfCardsOnTable))){
-            if numberOfCardsOnTable % Int(multiple) == 0{
-                columns = multiple
-                rows = numberOfCardsOnTable / multiple
-            }
-            grid.dimensions.rowCount = rows
-            grid.dimensions.columnCount = columns
-        }
+        grid.cellCount = numberOfCardsOnTable
     }
     
     private func updateCardViewFrames(withIndex index: Int){
