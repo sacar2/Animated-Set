@@ -116,47 +116,14 @@ class ViewController: UIViewController {
             //TODO: add/enable swipe gesture
             cardView.isUserInteractionEnabled = true
             
-            //------------------------------------------------------------
-            //CREATE CARDSTRING
-            var cardString = ""
-//            for _ in 1...card.number{
-//                cardString += card.symbol.rawValue
-//            }
-            // CREATE ATTRIBUTED CARD STRING
-            var attributes: [NSAttributedString.Key: Any] = [:]
-            if card.shading == SetCard.Shading.open{
-                attributes = [
-                    NSAttributedString.Key.strokeWidth: 5,
-                    NSAttributedString.Key.strokeColor: card.color
-                ]
-            } else if card.shading == SetCard.Shading.solid{
-                attributes = [
-                    NSAttributedString.Key.strokeWidth: -1,
-                    NSAttributedString.Key.foregroundColor: card.color
-                ]
-            } else if card.shading == SetCard.Shading.striped{
-                attributes = [
-                    NSAttributedString.Key.strokeWidth: -1,
-                    NSAttributedString.Key.strokeColor: card.color,
-                    NSAttributedString.Key.foregroundColor: card.color.withAlphaComponent(0.15)
-                ]
-            }
-            let attributedCardString = NSAttributedString(string: cardString, attributes: attributes)
-            
-            //CREATE CARDVIEW LABELS WITH SET TEXT
             var cardViewLabel: CardLabel
             if cardView.subviews.isEmpty{
                 cardViewLabel = CardLabel(frame: cardView.bounds, symbol: card.symbol, color: card.color, numberOfShapes: card.number, shading: card.shading)
-//                cardViewLabel = CardLabel(frame: cardView.bounds)
-                cardViewLabel.textAlignment = .center
                 cardView.addSubview(cardViewLabel)
             }else{
                 cardViewLabel = cardView.subviews[0] as! CardLabel
                 cardViewLabel.frame = cardView.bounds
             }
-            cardViewLabel.text = cardString
-            cardViewLabel.attributedText = attributedCardString
-            //------------------------------------------------------------
             
             setBordersForCard(forCardView: cardView, withCardIndex: index)
             viewDidLayoutSubviews()
