@@ -118,4 +118,11 @@ class CardLabel: UILabel {
             path.stroke()
         }
     }
+    
+    func updateCardAttributes(withSymbol symbol: SetCard.Symbol, color: UIColor, numberOfShapes: Int, shading: SetCard.Shading){
+        self.symbol = symbol
+        self.color = color
+        self.numberOfShapes = numberOfShapes
+        self.shading = shading
+    }
 }

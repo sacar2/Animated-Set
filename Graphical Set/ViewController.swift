@@ -95,7 +95,16 @@ class ViewController: UIViewController {
     
     @objc private func shuffleCardsOnTable(){
         game.shuffleCardsOnTable()
-        updateViewFromModel()
+        updateCardLabels()
+    }
+    
+    private func updateCardLabels(){
+        for index in cards.indices{
+            if let cardLabel = (cards[index].subviews.first as? CardLabel){
+                cardLabel.updateCardAttributes(withSymbol: game.cardsOnTable[index].symbol, color: game.cardsOnTable[index].color, numberOfShapes: game.cardsOnTable[index].number, shading: game.cardsOnTable[index].shading)
+                cardLabel.setNeedsDisplay()
+            }
+        }
     }
     
     /// Redraws the cards to display them correctly by calling setNeedsDisplay.
@@ -123,8 +132,8 @@ class ViewController: UIViewController {
             }else{
                 cardViewLabel = cardView.subviews[0] as! CardLabel
                 cardViewLabel.frame = cardView.bounds
+                cardViewLabel.setNeedsDisplay()
             }
-            
             setBordersForCard(forCardView: cardView, withCardIndex: index)
             viewDidLayoutSubviews()
         }
