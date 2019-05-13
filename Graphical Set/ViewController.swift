@@ -100,7 +100,8 @@ class ViewController: UIViewController {
     
     private func updateCardLabels(){
         for index in cards.indices{
-            if let cardLabel = (cards[index].subviews.first as? CardLabel){
+            let cardView = cards[index]
+            if let cardLabel = (cardView.subviews.first as? CardLabel){
                 cardLabel.updateCardAttributes(withSymbol: game.cardsOnTable[index].symbol, color: game.cardsOnTable[index].color, numberOfShapes: game.cardsOnTable[index].number, shading: game.cardsOnTable[index].shading)
                 cardLabel.setNeedsDisplay()
             }
@@ -132,7 +133,7 @@ class ViewController: UIViewController {
             }else{
                 cardViewLabel = cardView.subviews[0] as! CardLabel
                 cardViewLabel.frame = cardView.bounds
-                cardViewLabel.setNeedsDisplay()
+                updateCardLabels()
             }
             setBordersForCard(forCardView: cardView, withCardIndex: index)
             viewDidLayoutSubviews()

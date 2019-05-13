@@ -20,7 +20,7 @@ class CardView: UIView {
         commonSetup()
     }
     
-    func commonSetup() {
+    private func commonSetup() {
         self.backgroundColor = UIColor.clear
         isOpaque = false
     }
