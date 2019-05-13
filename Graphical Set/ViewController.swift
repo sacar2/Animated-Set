@@ -95,7 +95,7 @@ class ViewController: UIViewController {
     
     @objc private func shuffleCardsOnTable(){
         game.shuffleCardsOnTable()
-        updateCardLabels()
+        updateViewFromModel()
     }
     
     private func updateCardLabels(){
@@ -123,7 +123,6 @@ class ViewController: UIViewController {
             let card = game.cardsOnTable[index]
             updateCardViewFrames(withIndex: index)
             let cardView = cards[index]
-            //TODO: add/enable swipe gesture
             cardView.isUserInteractionEnabled = true
             
             var cardViewLabel: CardLabel
