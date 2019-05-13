@@ -9,13 +9,10 @@
 import UIKit
 
 struct SetCard{
-    enum Symbol: String{
-//        case diamonds
-//        case crescent
-//        case star
-        case square = "■"
-        case triangle = "▲"
-        case circle =  "●"
+    enum Symbol{
+        case squiggle
+        case diamond
+        case oval
     }
     
     enum Shading{

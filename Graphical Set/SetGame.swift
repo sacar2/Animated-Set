@@ -28,7 +28,7 @@ class SetGame{
         for symbol in SetCard.Symbol.allCases{
             for shade in SetCard.Shading.allCases{
                 for number in 1...3{
-                    for color in [UIColor.red, UIColor.blue, UIColor.green]{
+                    for color in [UIColor.red, UIColor.purple, UIColor.green]{
                         cardsInDeck.append(SetCard(withSymbol: symbol, withNumberOfSymbols: number, hasShading: shade, withColor: color))
                     }
                 }

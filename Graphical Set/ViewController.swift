@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let aspectRatio:  CGFloat = 0.75
+    let aspectRatio:  CGFloat = 1.5
     var cards: [CardView] = []
     lazy var grid = Grid(layout: .aspectRatio(aspectRatio), frame: cardArea.bounds)
     private var game = SetGame()
@@ -119,9 +119,9 @@ class ViewController: UIViewController {
             //------------------------------------------------------------
             //CREATE CARDSTRING
             var cardString = ""
-            for _ in 1...card.number{
-                cardString += card.symbol.rawValue
-            }
+//            for _ in 1...card.number{
+//                cardString += card.symbol.rawValue
+//            }
             // CREATE ATTRIBUTED CARD STRING
             var attributes: [NSAttributedString.Key: Any] = [:]
             if card.shading == SetCard.Shading.open{
@@ -144,13 +144,14 @@ class ViewController: UIViewController {
             let attributedCardString = NSAttributedString(string: cardString, attributes: attributes)
             
             //CREATE CARDVIEW LABELS WITH SET TEXT
-            var cardViewLabel: UILabel
+            var cardViewLabel: CardLabel
             if cardView.subviews.isEmpty{
-                cardViewLabel = UILabel(frame: cardView.bounds)
+                cardViewLabel = CardLabel(frame: cardView.bounds, symbol: card.symbol, color: card.color, numberOfShapes: card.number, shading: card.shading)
+//                cardViewLabel = CardLabel(frame: cardView.bounds)
                 cardViewLabel.textAlignment = .center
                 cardView.addSubview(cardViewLabel)
             }else{
-                cardViewLabel = cardView.subviews[0] as! UILabel
+                cardViewLabel = cardView.subviews[0] as! CardLabel
                 cardViewLabel.frame = cardView.bounds
             }
             cardViewLabel.text = cardString
