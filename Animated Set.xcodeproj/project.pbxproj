@@ -26,7 +26,7 @@
 		6AA319C0223FD40100BE089B /* SetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCard.swift; sourceTree = "<group>"; };
 		6AADCD232281FA8D000589F7 /* SetGameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameDelegate.swift; sourceTree = "<group>"; };
 		6AB85ADA2285B7FF00CBEF8A /* CardLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLabel.swift; sourceTree = "<group>"; };
-		6AC45C26223A0B5900199D20 /* Graphical Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Graphical Set.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AC45C26223A0B5900199D20 /* Animated Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Animated Set.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AC45C29223A0B5A00199D20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AC45C2B223A0B5A00199D20 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6AC45C2E223A0B5A00199D20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				6AD09C0D2266C81D006BBB8C /* Default-568h@2x.png */,
-				6AC45C28223A0B5A00199D20 /* Graphical Set */,
+				6AC45C28223A0B5A00199D20 /* Animated Set */,
 				6AC45C27223A0B5900199D20 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,12 +72,12 @@
 		6AC45C27223A0B5900199D20 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6AC45C26223A0B5900199D20 /* Graphical Set.app */,
+				6AC45C26223A0B5900199D20 /* Animated Set.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6AC45C28223A0B5A00199D20 /* Graphical Set */ = {
+		6AC45C28223A0B5A00199D20 /* Animated Set */ = {
 			isa = PBXGroup;
 			children = (
 				6AB85ADA2285B7FF00CBEF8A /* CardLabel.swift */,
@@ -90,15 +90,15 @@
 				6AA319BE223FD2FA00BE089B /* SetGame.swift */,
 				6AADCD232281FA8D000589F7 /* SetGameDelegate.swift */,
 			);
-			path = "Graphical Set";
+			path = "Animated Set";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6AC45C25223A0B5900199D20 /* Graphical Set */ = {
+		6AC45C25223A0B5900199D20 /* Animated Set */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6AC45C38223A0B5A00199D20 /* Build configuration list for PBXNativeTarget "Graphical Set" */;
+			buildConfigurationList = 6AC45C38223A0B5A00199D20 /* Build configuration list for PBXNativeTarget "Animated Set" */;
 			buildPhases = (
 				6AC45C22223A0B5900199D20 /* Sources */,
 				6AC45C23223A0B5900199D20 /* Frameworks */,
@@ -108,9 +108,9 @@
 			);
 			dependencies = (
 			);
-			name = "Graphical Set";
+			name = "Animated Set";
 			productName = "2019-03-14-Assignment2-Set";
-			productReference = 6AC45C26223A0B5900199D20 /* Graphical Set.app */;
+			productReference = 6AC45C26223A0B5900199D20 /* Animated Set.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -128,7 +128,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6AC45C21223A0B5900199D20 /* Build configuration list for PBXProject "Graphical Set" */;
+			buildConfigurationList = 6AC45C21223A0B5900199D20 /* Build configuration list for PBXProject "Animated Set" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -141,7 +141,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6AC45C25223A0B5900199D20 /* Graphical Set */,
+				6AC45C25223A0B5900199D20 /* Animated Set */,
 			);
 		};
 /* End PBXProject section */
@@ -320,12 +320,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5H54BM828W;
-				INFOPLIST_FILE = "$(SRCROOT)/Graphical Set/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Animated Set/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "selin.denise.acar.Graphical-Set";
+				PRODUCT_BUNDLE_IDENTIFIER = "selin.denise.acar.Animated-Set";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -338,12 +338,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5H54BM828W;
-				INFOPLIST_FILE = "$(SRCROOT)/Graphical Set/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Animated Set/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "selin.denise.acar.Graphical-Set";
+				PRODUCT_BUNDLE_IDENTIFIER = "selin.denise.acar.Animated-Set";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -353,7 +353,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6AC45C21223A0B5900199D20 /* Build configuration list for PBXProject "Graphical Set" */ = {
+		6AC45C21223A0B5900199D20 /* Build configuration list for PBXProject "Animated Set" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6AC45C36223A0B5A00199D20 /* Debug */,
@@ -362,7 +362,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6AC45C38223A0B5A00199D20 /* Build configuration list for PBXNativeTarget "Graphical Set" */ = {
+		6AC45C38223A0B5A00199D20 /* Build configuration list for PBXNativeTarget "Animated Set" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6AC45C39223A0B5A00199D20 /* Debug */,
