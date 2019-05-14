@@ -1,6 +1,5 @@
-# Graphical-Set
-
-The game of set implemented using custom drawing with bezier paths. 
+# Annimated-Set
+The game of set implemented using custom drawing with bezier paths, and animations. This also includes the previously created Concentration Game.
 
 ## What is Set?
 Goal of the game is to find sets among the cards on the table to remove as many cards from the table as possible.
@@ -37,8 +36,15 @@ Each deselected card will remove a point.
 
 ---
 
-### Features:
+### Features & Concepts Used:
 - A custom UIView with a draw(CGRect) method
 - Gestures (swipe, rotation)
 - Creating UIViews in programatically
 - Drawing with Core Graphics and UIBezierPath
+- UIViewPropertyAnimator
+- UIDynamicAnimator
+- Timer
+- UIView.transition(with:duration:options:animations:completion:) 5. UINavigationController
+- UISplitViewController 7. UITabBarController
+- Segues
+- Autolayout
