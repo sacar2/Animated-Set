@@ -44,7 +44,7 @@ Each deselected card will remove a point.
 - UIViewPropertyAnimator
 - UIDynamicAnimator
 - Timer
-- UIView.transition(with:duration:options:animations:completion:) 5. UINavigationController
-- UISplitViewController 7. UITabBarController
+- UIView.transition(with:duration:options:animations:completion:)
+- UINavigationController, UISplitViewController, and UITabBarController
 - Segues
 - Autolayout
