@@ -1,4 +1,4 @@
-# Annimated-Set
+# Animated-Set
 The game of set implemented using custom drawing with bezier paths, and animations. This also includes the previously created Concentration Game.
 
 ## What is Set?
