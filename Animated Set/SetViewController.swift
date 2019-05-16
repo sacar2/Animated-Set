@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SetViewController: UIViewController {
     
     let aspectRatio:  CGFloat = 1.5
     var cards: [CardView] = []
@@ -83,13 +83,13 @@ class ViewController: UIViewController {
     }
     
     private func setupSwipeDownGesture(){
-        let swipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.dealCards))
+        let swipeDownGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(SetViewController.dealCards))
         swipeDownGestureRecognizer.direction = UISwipeGestureRecognizer.Direction.down
         view.addGestureRecognizer(swipeDownGestureRecognizer)
     }
     
     private func setupRotationGesture(){
-        let rotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(ViewController.shuffleCardsOnTable))
+        let rotationGestureRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(SetViewController.shuffleCardsOnTable))
         view.addGestureRecognizer(rotationGestureRecognizer)
     }
     
@@ -156,7 +156,7 @@ class ViewController: UIViewController {
                 let newCard = CardView(frame: frame)
                 cards.append(newCard)
                 cardArea.addSubview(newCard)
-                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.tappedCardView(recognizer:)))
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(SetViewController.tappedCardView(recognizer:)))
                 newCard.addGestureRecognizer(tapGesture)
             }
         }
@@ -192,7 +192,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: SetGameDelegate{
+extension SetViewController: SetGameDelegate{
     func removeCardsFromView(forCardIndices indices: [Int]) {
         for index in indices.sorted(by: >){
             cards[index].removeFromSuperview()
