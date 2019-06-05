@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Concentration View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="_019_03_12_Assignment1_Concentration" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConcentrationViewController" id="BYZ-38-t0r" customClass="ConcentrationViewController" customModule="Animated_Set" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -216,7 +216,7 @@
                                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PoM-ed-R3Y"/>
+                                                    <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ERn-6N-Eos"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ys7-jx-pKe">
@@ -367,7 +367,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="startNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qh7-03-vDr"/>
+                                            <action selector="startNewGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bTL-Vw-pl8"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -383,7 +383,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="flipCountLabel" destination="ukX-D9-dgh" id="5yo-Du-EWQ"/>
+                        <outlet property="flipCountLabel" destination="ukX-D9-dgh" id="Bj4-gs-Qe1"/>
                         <outlet property="scoreLabel" destination="Ey2-3h-QWG" id="Td9-FO-0lw"/>
                         <outletCollection property="cardButtons" destination="vUp-uq-BxN" collectionClass="NSMutableArray" id="9ed-MA-gSA"/>
                         <outletCollection property="cardButtons" destination="sND-FP-jRR" collectionClass="NSMutableArray" id="BPZ-JX-3Np"/>
@@ -391,11 +391,9 @@
                         <outletCollection property="cardButtons" destination="e8v-aF-jve" collectionClass="NSMutableArray" id="Gki-Jt-bPH"/>
                         <outletCollection property="cardButtons" destination="gvy-CO-MQh" collectionClass="NSMutableArray" id="gpD-1B-J0d"/>
                         <outletCollection property="cardButtons" destination="wb6-cy-OcK" collectionClass="NSMutableArray" id="xdi-jW-r9l"/>
-                        <outletCollection property="cardButtons" destination="ODu-h8-uKd" collectionClass="NSMutableArray" id="vIE-aD-3RK"/>
                         <outletCollection property="cardButtons" destination="5pf-yx-t8H" collectionClass="NSMutableArray" id="ksa-T7-Sqa"/>
                         <outletCollection property="cardButtons" destination="bc5-DW-07S" collectionClass="NSMutableArray" id="CKf-tY-fJ3"/>
                         <outletCollection property="cardButtons" destination="WNo-xv-fEx" collectionClass="NSMutableArray" id="nnD-Qk-8iE"/>
-                        <outletCollection property="cardButtons" destination="VYw-Eu-xJp" collectionClass="NSMutableArray" id="SPc-NY-6Du"/>
                         <outletCollection property="cardButtons" destination="YrS-Ni-Gyl" collectionClass="NSMutableArray" id="Rk3-7l-dHi"/>
                         <outletCollection property="cardButtons" destination="cEA-hw-uSc" collectionClass="NSMutableArray" id="ts3-rs-NGb"/>
                         <outletCollection property="cardButtons" destination="M1A-5g-hTS" collectionClass="NSMutableArray" id="xIG-dd-G65"/>
@@ -406,9 +404,11 @@
                         <outletCollection property="cardButtons" destination="YIk-ch-lBl" collectionClass="NSMutableArray" id="LBe-0P-oq3"/>
                         <outletCollection property="cardButtons" destination="eqc-oH-STa" collectionClass="NSMutableArray" id="pN7-C5-h9b"/>
                         <outletCollection property="cardButtons" destination="boG-8G-CHW" collectionClass="NSMutableArray" id="iHv-FU-Cqe"/>
-                        <outletCollection property="cardButtons" destination="gyH-Qg-6NL" collectionClass="NSMutableArray" id="BMa-gx-OZP"/>
                         <outletCollection property="cardButtons" destination="4jh-CH-HcR" collectionClass="NSMutableArray" id="DJS-tA-z9O"/>
                         <outletCollection property="cardButtons" destination="Uls-Qr-wZP" collectionClass="NSMutableArray" id="hp5-lB-BFD"/>
+                        <outletCollection property="cardButtons" destination="gyH-Qg-6NL" collectionClass="NSMutableArray" id="lzg-XN-QaW"/>
+                        <outletCollection property="cardButtons" destination="ODu-h8-uKd" collectionClass="NSMutableArray" id="KX2-Zb-moV"/>
+                        <outletCollection property="cardButtons" destination="VYw-Eu-xJp" collectionClass="NSMutableArray" id="B80-0q-YFA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

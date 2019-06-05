@@ -19,6 +19,8 @@ class SetViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var gameFeedbackLabel: UILabel!
     @IBOutlet weak var dealMoreCardsButton: UIButton!
+    @IBOutlet weak var actionStackView: UIStackView!
+    @IBOutlet weak var playingAreaStackView: UIStackView!
     
     @IBAction func dealMoreCards(_ sender: UIButton) {
         dealCards()
@@ -61,6 +63,7 @@ class SetViewController: UIViewController {
         game.delegate = self
         setupSwipeDownGesture()
         setupRotationGesture()
+        setViewContraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,10 +73,23 @@ class SetViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         DispatchQueue.main.async() {
             //need these to update the frame of the cards when the view is rotated
+            self.setViewContraints()
             self.grid.frame = self.cardArea.bounds
             self.updateViewFromModel()
             self.refreshCards()
         }
+    }
+    
+    private func setViewContraints(){
+        let deviceOrientation = UIApplication.shared.statusBarOrientation
+        if  deviceOrientation == UIInterfaceOrientation.landscapeLeft || deviceOrientation == UIInterfaceOrientation.landscapeRight{
+            self.playingAreaStackView.axis = NSLayoutConstraint.Axis.horizontal
+            self.actionStackView.axis = NSLayoutConstraint.Axis.vertical
+        }else if deviceOrientation == UIInterfaceOrientation.portrait || deviceOrientation == UIInterfaceOrientation.portraitUpsideDown{
+            self.playingAreaStackView.axis = NSLayoutConstraint.Axis.vertical
+            self.actionStackView.axis = NSLayoutConstraint.Axis.horizontal
+        }
+        self.view.layoutIfNeeded()
     }
     
     @objc private func dealCards(){
@@ -137,7 +153,7 @@ class SetViewController: UIViewController {
             setBordersForCard(forCardView: cardView, withCardIndex: index)
             viewDidLayoutSubviews()
         }
-        dealMoreCardsButton.isEnabled = game.cardsInDeck.count > 0
+//        dealMoreCardsButton.isEnabled = game.cardsInDeck.count > 0
         setScoreLabel(withScore: game.score)
         updateGameFeedbackLabel()
     }
