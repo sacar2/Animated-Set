@@ -81,15 +81,17 @@ class SetViewController: UIViewController {
     }
     
     private func setViewContraints(){
-        let deviceOrientation = UIApplication.shared.statusBarOrientation
-        if  deviceOrientation == UIInterfaceOrientation.landscapeLeft || deviceOrientation == UIInterfaceOrientation.landscapeRight{
-            self.playingAreaStackView.axis = NSLayoutConstraint.Axis.horizontal
-            self.actionStackView.axis = NSLayoutConstraint.Axis.vertical
-        }else if deviceOrientation == UIInterfaceOrientation.portrait || deviceOrientation == UIInterfaceOrientation.portraitUpsideDown{
-            self.playingAreaStackView.axis = NSLayoutConstraint.Axis.vertical
-            self.actionStackView.axis = NSLayoutConstraint.Axis.horizontal
+        if tabBarController?.selectedViewController == self{
+            let deviceOrientation = UIApplication.shared.statusBarOrientation
+            if  deviceOrientation == UIInterfaceOrientation.landscapeLeft || deviceOrientation == UIInterfaceOrientation.landscapeRight{
+                self.playingAreaStackView.axis = NSLayoutConstraint.Axis.horizontal
+                self.actionStackView.axis = NSLayoutConstraint.Axis.vertical
+            }else if deviceOrientation == UIInterfaceOrientation.portrait || deviceOrientation == UIInterfaceOrientation.portraitUpsideDown{
+                self.playingAreaStackView.axis = NSLayoutConstraint.Axis.vertical
+                self.actionStackView.axis = NSLayoutConstraint.Axis.horizontal
+            }
+            self.view.layoutIfNeeded()
         }
-        self.view.layoutIfNeeded()
     }
     
     @objc private func dealCards(){
